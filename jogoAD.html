@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>sorteio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+</style>
+
+<body>
+    <h1>Jogo de Adivinhação</h1>
+    <p>Advinhe o número entre 1 e 100.</p>
+    <input type="number" id="entrada" min="1" max="100">
+    <button id="botao">Adivinhar</button>
+    <p id="resultado"></p>
+    <p id="tentativas"></p>
+    <h1 id="resultado"></h1>
+    <p class="fundo">    
+</body>
+  
+   
+
+    <script>
+        let numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+        let tentativas = 0;
+        let numerosSorteados = [];
+
+        document.getElementById("botao").onclick = function () {
+            let entrada = document.getElementById("entrada").value;
+            tentativas++;
+            numerosSorteados.push(entrada);
+
+            if (entrada == numeroAleatorio) {
+                document.getElementById("resultado").innerHTML = "Parabéns! Você acertou!";
+                document.getElementById("tentativas").innerHTML = "Número de tentativas: " + tentativas;
+            } else if (entrada < numeroAleatorio) {
+                document.getElementById("resultado").innerHTML = "O número é maior.";
+            } else {
+                document.getElementById("resultado").innerHTML = "O número é menor.";
+            }
+
+            // Histórico de tentativas
+            let historico = "Histórico de tentativas: ";
+            for (let i = 0; i < numerosSorteados.length; i++) {
+                historico += numerosSorteados[i];
+                if (i != numerosSorteados.length - 1) {
+                    historico = "";
+              
+                }
+
+            }
+            document.getElementById("tentativas").innerHTML += "<br>" + historico;
+        }
+    </script>
+</html>
